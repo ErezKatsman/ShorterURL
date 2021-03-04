@@ -2,9 +2,9 @@ const { url } = require("inspector");
 
 class ShorterURL {
   constructor(originalURL) {
+    this.originalURL = originalURL;
     this.shortURLid = Date.now();
     this.creationDate = this.formatDate(new Date());
-    this.originalURL = originalURL;
     this.redirectCount = 0;
   }
 

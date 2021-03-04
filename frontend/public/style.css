@@ -1,0 +1,49 @@
+body {
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  color: #222;
+  background-color: rgb(148, 192, 221);
+  text-align: center;
+}
+
+.input-section {
+  display: flex;
+  justify-content: center;
+}
+
+.input-section-item {
+  margin: 10px;
+}
+
+#input-label {
+  font-weight: 700;
+}
+
+#url-input {
+  width: 500px;
+  border-radius: 5px;
+}
+
+#url-input:hover {
+  background-color: rgba(240, 248, 255, 0.781);
+}
+
+#submit {
+  background-color: #4caf50;
+  color: white;
+  padding: 6px 20px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+#submit:hover {
+  background-color: #419c44;
+}
+
+.view-section {
+  background-color: rgb(185, 29, 29);
+  width: 700px;
+  height: 40px;
+  margin: auto;
+}

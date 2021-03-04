@@ -14,32 +14,41 @@ class DataBase {
     );
   }
 
-  getFromData() {
-    fs.readFile("../DATABASE.json", "utf-8").then((data) => {
-      this.dataURL = JSON.parse(data);
-    });
-  }
-
-  addUrl(url) {
+  // if it added return the new url OBJ -- if not return NULL
+  async addUrl(url) {
+    await this.loadData();
     if (this.isExist(url)) {
-      this.dataURL.find((urlElement) => urlElement.originalURL === url)
-        .redirectCount++;
-      return this.save();
+      return this.dataURL.find((urlElement) => urlElement.originalURL === url)
+        .shortURLid;
     } else {
       const urlItem = new ShorterURL(url);
-      urlItem.redirectCount++;
+      console.log(urlItem);
       this.dataURL.push(urlItem);
-      return this.save();
+      this.saveData();
+      return urlItem;
     }
   }
 
-  save() {
+  loadData() {
+    return new Promise((resolve, reject) =>
+      fs
+        .readFile("./DATABASE.json", "utf-8")
+        .then((data) => {
+          this.dataURL = JSON.parse(data);
+          resolve();
+        })
+        .catch((err) => {
+          reject();
+          throw new Error(`can not load data: ${err}`);
+        })
+    );
+  }
+
+  saveData() {
     const urls = this.dataURL;
-    return fs
-      .writeFile("./DATABASE.json", JSON.stringify(urls))
-      .catch((err) => {
-        throw new Error(`can not save data: ${err}`);
-      });
+    fs.writeFile("./DATABASE.json", JSON.stringify(urls)).catch((err) => {
+      throw new Error(`can not save data: ${err}`);
+    });
   }
 }
 

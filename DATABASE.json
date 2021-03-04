@@ -1,1 +1,20 @@
-[{"originalURL":"google.com","shortURLid":1614858365860,"creationDate":"4/3/2021","redirectCount":0},{"originalURL":"gose.com","shortURLid":1614858957093,"creationDate":"4/3/2021","redirectCount":0}]
+[
+  {
+    "originalURL": "https://google.com",
+    "shortURLid": 1614858365860,
+    "creationDate": "4/3/2021",
+    "redirectCount": 0
+  },
+  {
+    "originalURL": "https://github.com",
+    "shortURLid": 1614858957093,
+    "creationDate": "4/3/2021",
+    "redirectCount": 0
+  },
+  {
+    "originalURL": "https://stackoverflow.com/questions/28352871/in-express-how-do-i-redirect-a-user-to-an-external-url",
+    "shortURLid": 1614870835997,
+    "creationDate": "4/3/2021",
+    "redirectCount": 0
+  }
+]

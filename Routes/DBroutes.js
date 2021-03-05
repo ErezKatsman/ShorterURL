@@ -8,16 +8,27 @@ router.use(bodyParser.json());
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  DB.loadData().then(() => {
-    DB.dataURL.forEach((url) => {
-      if (JSON.stringify(url.shortURLid) == id) {
-        return res.status(302).redirect(url.originalURL);
-      }
-    });
-    res
-      .status(404)
-      .json({ success: false, method: "POST", meassage: "Invalid url adress" });
-  });
+  DB.loadData()
+    .then(() => {
+      DB.dataURL.forEach((url) => {
+        if (JSON.stringify(url.shortURLid) == id) {
+          url.redirectCount++;
+          return res.status(302).redirect(url.originalURL);
+        }
+      });
+      res.status(404).json({
+        success: false,
+        method: "POST",
+        meassage: "Invalid shortenerURL adress",
+      });
+    })
+    .catch((e) =>
+      res.status(500).json({
+        success: false,
+        method: "POST",
+        meassage: "Invalid shortenerURL adress",
+      })
+    );
 });
 
 router.post("/", (req, res) => {
@@ -27,6 +38,9 @@ router.post("/", (req, res) => {
   });
 });
 
-// router.get("/:id", (req, res) => {});
+// router.get("/all", (req, res) => {
+//   const allUrlObjects = DBclass.getAllData();
+//   res.status(200).send(JSON.stringify(allUrlObjects), null, 2);
+// });
 
 module.exports = router;

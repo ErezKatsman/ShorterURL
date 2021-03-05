@@ -6,6 +6,8 @@ const database = require("./Routes/DBroutes");
 
 app.use(cors());
 
+app.set("view engine", "pug");
+
 app.use("/API/shorterURL", database);
 
 app.use("/public", express.static(`./public`));

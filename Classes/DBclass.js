@@ -38,7 +38,7 @@ class DataBase {
           resolve();
         })
         .catch((err) => {
-          reject();
+          reject(err);
           throw new Error(`can not load data: ${err}`);
         })
     );
@@ -50,6 +50,11 @@ class DataBase {
       throw new Error(`can not save data: ${err}`);
     });
   }
+
+  // getAllDATA() {
+  //   // fs.readFile ====>>
+  //   return newArray;
+  // }
 }
 
 module.exports = DataBase;

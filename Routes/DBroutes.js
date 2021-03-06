@@ -8,6 +8,7 @@ router.use(bodyParser.json());
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
+
   DB.loadData()
     .then(() => {
       DB.dataURL.forEach((url) => {
@@ -17,7 +18,7 @@ router.get("/:id", (req, res) => {
           return res.status(302).redirect(url.originalURL);
         }
       });
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         method: "GET",
         message: "Invalid shortenerURL adress",
@@ -34,7 +35,6 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   const { url } = req.body;
-  console.log(req.body);
   if (DB.validURL(url)) {
     DB.addUrl(url).then((isAdded) => {
       return res

@@ -8,7 +8,7 @@ app.use(cors());
 
 app.set("view engine", "pug");
 
-app.use("/API/shorterURL", database);
+app.use("/api/shorterurl", database);
 
 app.use("/public", express.static(`./public`));
 

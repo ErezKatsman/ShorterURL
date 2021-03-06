@@ -11,7 +11,7 @@ function createElement(element, id, className, inner) {
 }
 
 function getFromURL(textInput) {
-  return fetch(`http://localhost:3000/API/shorterURL/`, {
+  return fetch(`http://localhost:3000/api/shorterurl/`, {
     method: "POST",
     headers: { "content-Type": "application/json" },
     body: JSON.stringify({ url: textInput }),
@@ -22,7 +22,7 @@ function getFromURL(textInput) {
     .then((data) => data);
 }
 
-submit.addEventListener("click", async (event) => {
+submit.addEventListener("click", async () => {
   shortenerUrlDiv.innerHTML = "";
   const resObj = await getFromURL(input.value);
   if (resObj.success === true) {
@@ -31,7 +31,14 @@ submit.addEventListener("click", async (event) => {
       "span",
       "span-shoretr",
       "child-view",
-      `shorterURL: http://localhost:3000/API/shorterURL/${urlObj.shortURLid}`
+      `shorterURLid:  ${
+        urlObj.shortURLid
+        //   res
+        //     .status(201)
+        //     .render("new", { id: "http://" + req.get("host") + "/" + newID }) +
+        //   urlObj.shortURLid
+        // }`
+      }`
     );
     const redirectCount = createElement(
       "span",

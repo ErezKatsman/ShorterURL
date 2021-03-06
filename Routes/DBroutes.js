@@ -18,24 +18,34 @@ router.get("/:id", (req, res) => {
       });
       res.status(404).json({
         success: false,
-        method: "POST",
+        method: "GET",
         meassage: "Invalid shortenerURL adress",
       });
     })
     .catch((e) =>
       res.status(500).json({
         success: false,
-        method: "POST",
-        meassage: "Invalid shortenerURL adress",
+        method: "GET",
+        meassage: `error: ${e}`,
       })
     );
 });
 
 router.post("/", (req, res) => {
   const { url } = req.body;
-  DB.addUrl(url).then((isAdded) => {
-    res.status(200).json({ success: true, method: "POST", meassage: isAdded });
-  });
+  if (DB.validURL(url)) {
+    DB.addUrl(url).then((isAdded) => {
+      return res
+        .status(200)
+        .json({ success: true, method: "POST", meassage: isAdded });
+    });
+  } else {
+    res.status(404).json({
+      success: false,
+      method: "post",
+      meassage: "Invalid URL adress",
+    });
+  }
 });
 
 // router.get("/all", (req, res) => {

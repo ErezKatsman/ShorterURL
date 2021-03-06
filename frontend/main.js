@@ -2,34 +2,48 @@ const submit = document.getElementById("submit");
 const input = document.getElementById("url-input");
 const shortenerUrlDiv = document.getElementById("shortener-url");
 
-// function getOnDiv(id) {
-//   fetch(`http://localhost:3000/API/shorterURL/${id}`, {
-//     method: "GET",
-//     headers: { "Content-Type": "application/json" },
-//   })
-//     .then((res) => res.json())
-//     .then((data) => console.log(data));
-// }
+function createElement(element, id, className, inner) {
+  const elem = document.createElement(element);
+  elem.id = id;
+  elem.className = className;
+  elem.innerHTML = inner;
+  return elem;
+}
 
 function getFromURL(textInput) {
-  fetch(`http://localhost:3000/API/shorterURL/`, {
+  return fetch(`http://localhost:3000/API/shorterURL/`, {
     method: "POST",
-    // headers: { "content-Type": "application/json" },
-    body: { url: textInput },
+    headers: { "content-Type": "application/json" },
+    body: JSON.stringify({ url: textInput }),
   })
     .then((res) => {
       return res.json();
     })
-    .then((data) => {
-      console.log(data);
-    });
+    .then((data) => data);
 }
 
-getFromURL(
-  "https://stackoverflow.com/questions/28352871/in-express-how-do-i-redirect-a-user-to-an-external-url"
-);
-// getOnDiv("1614870835997");
-
-submit.addEventListener("click", (event) => {
-  // getFromUrl(input.value);
+submit.addEventListener("click", async (event) => {
+  shortenerUrlDiv.innerHTML = "";
+  const resObj = await getFromURL(input.value);
+  if (resObj.success === true) {
+    const urlObj = resObj.message;
+    const shoreterURL = createElement(
+      "span",
+      "span-shoretr",
+      "child-view",
+      `shorterURL: http://localhost:3000/API/shorterURL/${urlObj.shortURLid}`
+    );
+    const redirectCount = createElement(
+      "span",
+      "span-shoretr",
+      "child-view",
+      `clickTimes: ${urlObj.redirectCount}`
+    );
+    shortenerUrlDiv.append(shoreterURL, redirectCount);
+  } else {
+    setTimeout(() => {
+      shortenerUrlDiv.innerHTML = resObj.message;
+    }, 700);
+    shortenerUrlDiv.className = "view-section-unsuccess";
+  }
 });

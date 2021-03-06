@@ -20,7 +20,7 @@ const invalidUrlResponse = {
   meassage: "Invalid URL adress",
 };
 
-describe("Post route", async () => {
+describe("POST route", async () => {
   test("if post a new Item in the local data with correct url", async () => {
     const response = await request(app)
       .post("/API/shorterURL")
@@ -36,3 +36,5 @@ describe("Post route", async () => {
     expect(response.status).toEqual(404);
   });
 });
+
+descrive("GET route", async () => {});

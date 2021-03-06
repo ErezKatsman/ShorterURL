@@ -9,7 +9,7 @@
     "originalURL": "https://github.com",
     "shortURLid": 1614858957093,
     "creationDate": "4/3/2021",
-    "redirectCount": 0
+    "redirectCount": 2
   },
   {
     "originalURL": "https://stackoverflow.com/questions/28352871/in-express-how-do-i-redirect-a-user-to-an-external-url",
@@ -27,6 +27,12 @@
     "originalURL": "https://www.google.com",
     "shortURLid": 1614959744922,
     "creationDate": "5/3/2021",
+    "redirectCount": 1
+  },
+  {
+    "originalURL": "https://www.google.com/search?sxsrf=ALeKk02l30wNHoLhmtDagmPou5GW49DQ-A%3A1614677617093&ei=cQY-YOCYBYyOlwSdp4-QAg&q=%D7%9E%D7%94+%D7%96%D7%94+%D7%9C%D7%A8%D7%A0%D7%93%D7%A8+%D7%91%D7%AA%D7%9B%D7%A0%D7%95%D7%AA&oq=%D7%9E%D7%94+%D7%96%D7%94+%D7%9C%D7%A8%D7%A0%D7%93%D7%A8+%D7%91%D7%AA%D7%9B%D7%A0%D7%95%D7%AA&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEM0CMgUIABDNAjoUCAAQsAMQigMQtwMQ1AMQ5QIQiwM6BwgAEEcQsAM6BggAEBYQHjoFCCEQoAE6BAghEBU6BwghEAoQoAFQ4TJYkUVgwkdoAXACeACAAcQCiAGyD5IBBTItNy4xmAEAoAEBqgEHZ3dzLXdpesgBBLgBAsABAQ&sclient=gws-wiz&ved=0ahUKEwiglazuppHvAhUMx4UKHZ3TAyIQ4dUDCA0&uact=5",
+    "shortURLid": 1615037251706,
+    "creationDate": "6/3/2021",
     "redirectCount": 0
   }
 ]

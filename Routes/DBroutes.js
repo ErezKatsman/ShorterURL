@@ -13,37 +13,39 @@ router.get("/:id", (req, res) => {
       DB.dataURL.forEach((url) => {
         if (JSON.stringify(url.shortURLid) == id) {
           url.redirectCount++;
+          DB.saveData();
           return res.status(302).redirect(url.originalURL);
         }
       });
       res.status(404).json({
         success: false,
         method: "GET",
-        meassage: "Invalid shortenerURL adress",
+        message: "Invalid shortenerURL adress",
       });
     })
     .catch((e) =>
       res.status(500).json({
         success: false,
         method: "GET",
-        meassage: `error: ${e}`,
+        message: `error: ${e}`,
       })
     );
 });
 
 router.post("/", (req, res) => {
   const { url } = req.body;
+  console.log(req.body);
   if (DB.validURL(url)) {
     DB.addUrl(url).then((isAdded) => {
       return res
         .status(200)
-        .json({ success: true, method: "POST", meassage: isAdded });
+        .json({ success: true, method: "POST", message: isAdded });
     });
   } else {
     res.status(404).json({
       success: false,
       method: "post",
-      meassage: "Invalid URL adress",
+      message: "Invalid URL adress",
     });
   }
 });

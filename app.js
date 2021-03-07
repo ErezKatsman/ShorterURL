@@ -13,7 +13,7 @@ app.use("/api/shorterurl", database);
 app.use("/public", express.static(`./public`));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
+  res.sendFile(__dirname + "/frontend/index.html");
 });
 
 module.exports = app;

@@ -37,6 +37,7 @@ submit.addEventListener("click", async () => {
   shortenerUrlDiv.innerHTML = "";
   const resObj = await getFromURL(input.value);
   if (resObj.success === true) {
+    shortenerUrlDiv.className = "view-section-success";
     const urlObj = resObj.message;
     const shoreterURL = createElement(
       "span",

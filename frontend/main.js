@@ -11,7 +11,7 @@ function createElement(element, id, className, inner) {
 }
 
 function getFromURL(textInput) {
-  return fetch(`http://localhost:3000/api/shorterurl/`, {
+  return fetch(`${window.location.origin}/api/shorterurl/`, {
     method: "POST",
     headers: { "content-Type": "application/json" },
     body: JSON.stringify({ url: textInput }),
@@ -23,7 +23,7 @@ function getFromURL(textInput) {
 }
 
 function getLocalURL(textInput) {
-  return fetch(`http://localhost:3000/api/shorterurl/`, {
+  return fetch(`${window.location.origin}/api/shorterurl/`, {
     method: "POST",
     headers: { "content-Type": "application/json" },
     body: JSON.stringify({ url: textInput }),

@@ -22,6 +22,17 @@ function getFromURL(textInput) {
     .then((data) => data);
 }
 
+function getLocalURL(textInput) {
+  return fetch(`http://localhost:3000/api/shorterurl/`, {
+    method: "POST",
+    headers: { "content-Type": "application/json" },
+    body: JSON.stringify({ url: textInput }),
+  }).then((res) => {
+    console.log(res);
+    return res.url;
+  });
+}
+
 submit.addEventListener("click", async () => {
   shortenerUrlDiv.innerHTML = "";
   const resObj = await getFromURL(input.value);
@@ -31,20 +42,13 @@ submit.addEventListener("click", async () => {
       "span",
       "span-shoretr",
       "child-view",
-      `shorterURLid:  ${
-        urlObj.shortURLid
-        //   res
-        //     .status(201)
-        //     .render("new", { id: "http://" + req.get("host") + "/" + newID }) +
-        //   urlObj.shortURLid
-        // }`
-      }`
+      `shorter URL:  ${(await getLocalURL(input.value)) + urlObj.shortURLid}`
     );
     const redirectCount = createElement(
       "span",
       "span-shoretr",
       "child-view",
-      `clickTimes: ${urlObj.redirectCount}`
+      `click Times: ${urlObj.redirectCount}`
     );
     shortenerUrlDiv.append(shoreterURL, redirectCount);
   } else {

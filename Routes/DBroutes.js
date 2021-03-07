@@ -8,14 +8,13 @@ router.use(bodyParser.json());
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-
   DB.loadData()
     .then(() => {
       DB.dataURL.forEach((url) => {
         if (JSON.stringify(url.shortURLid) == id) {
           url.redirectCount++;
           DB.saveData();
-          return res.status(302).redirect(url.originalURL);
+          return res.redirect(url.originalURL);
         }
       });
       return res.status(404).json({
@@ -49,10 +48,5 @@ router.post("/", (req, res) => {
     });
   }
 });
-
-// router.get("/all", (req, res) => {
-//   const allUrlObjects = DBclass.getAllData();
-//   res.status(200).send(JSON.stringify(allUrlObjects), null, 2);
-// });
 
 module.exports = router;

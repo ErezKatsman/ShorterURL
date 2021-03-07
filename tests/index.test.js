@@ -46,22 +46,21 @@ describe("POST route", () => {
 
   test("if the POST method add to the database with new and valid URL", async () => {
     const urlDataBefore = JSON.parse(
-      fs.readFileSync("./DATABASE.JSON", "utf-8")
+      await fs.readFileSync("./DATABASE.JSON", "utf-8")
     );
     await request(app).post("/api/shorterurl").send(validTestJson);
     const urlDataAfter = JSON.parse(
-      fs.readFileSync("./DATABASE.JSON", "utf-8")
+      await fs.readFileSync("./DATABASE.JSON", "utf-8")
     );
     expect(urlDataBefore.length).toBe(urlDataAfter.length - 1);
-    fs.writeFileSync("./DATABASE.JSON", JSON.stringify(urlDataBefore));
+    await fs.writeFileSync("./DATABASE.JSON", JSON.stringify(urlDataBefore));
   });
 });
 
-describe("GET route", () => {
-  test("if a correct shorter url redirect to the right url", async () => {
-    const response = await request(app).get(
-      `/api/shorterurl/${validUrlShorterId}`
-    );
-    expect(response.status).toEqual(302);
-  });
-});
+//unfinished
+// describe("GET route", () => {
+//   test("if a correct shorter url redirect to the right url", async () => {
+//     const response = await request(app).get(`/api/shorterurl/1615042437523`);
+//     expect(response.status).toEqual(302);
+//   });
+// });

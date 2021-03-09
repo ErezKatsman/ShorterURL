@@ -6,12 +6,14 @@ const database = require("./Routes/DBroutes");
 
 app.use(cors());
 
-app.use("/API/shorterURL", database);
+app.set("view engine", "pug");
+
+app.use("/api/shorterurl", database);
 
 app.use("/public", express.static(`./public`));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
+  res.sendFile(__dirname + "/frontend/index.html");
 });
 
 module.exports = app;

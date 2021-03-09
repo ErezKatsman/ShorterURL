@@ -18,11 +18,12 @@ class DataBase {
   async addUrl(url) {
     await this.loadData();
     if (this.isExist(url)) {
-      return this.dataURL.find((urlElement) => urlElement.originalURL === url)
-        .shortURLid;
+      const urlItem = this.dataURL.find(
+        (urlElement) => urlElement.originalURL === url
+      );
+      return urlItem;
     } else {
       const urlItem = new ShorterURL(url);
-      console.log(urlItem);
       this.dataURL.push(urlItem);
       this.saveData();
       return urlItem;
@@ -38,7 +39,7 @@ class DataBase {
           resolve();
         })
         .catch((err) => {
-          reject();
+          reject(err);
           throw new Error(`can not load data: ${err}`);
         })
     );
@@ -50,6 +51,22 @@ class DataBase {
       throw new Error(`can not save data: ${err}`);
     });
   }
+
+  validURL(str) {
+    const pattern = new RegExp(
+      "^(https?:\\/\\/)?" + // protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // fragment locator
+    return !!pattern.test(str);
+  }
 }
 
+// function addTodiv(shorterUrl, numOfRedirect) {
+//   input;
+// }
 module.exports = DataBase;

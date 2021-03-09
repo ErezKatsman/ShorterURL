@@ -22,6 +22,7 @@ body {
 #url-input {
   width: 500px;
   border-radius: 5px;
+  height: 25px;
 }
 
 #url-input:hover {
@@ -33,7 +34,7 @@ body {
   color: white;
   padding: 6px 20px;
   text-align: center;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 5px;
 }
 
@@ -41,7 +42,20 @@ body {
   background-color: #419c44;
 }
 
-.view-section {
+.view-section-success {
+  transition: 0.3s;
+  color: white;
+  background-color: rgb(32, 29, 185);
+  width: 700px;
+  height: 40px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.view-section-unsuccess {
+  transition: 0.7s;
+  color: white;
   background-color: rgb(185, 29, 29);
   width: 700px;
   height: 40px;

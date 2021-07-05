@@ -2,6 +2,7 @@ const submit = document.getElementById("submit");
 const input = document.getElementById("url-input");
 const shortenerUrlDiv = document.getElementById("shortener-url");
 
+// function for creating alements
 function createElement(element, id, className, inner) {
   const elem = document.createElement(element);
   elem.id = id;
@@ -10,6 +11,7 @@ function createElement(element, id, className, inner) {
   return elem;
 }
 
+//function the checks if the url is valid
 function getFromURL(textInput) {
   return fetch(`${window.location.origin}/api/shorterurl/`, {
     method: "POST",
@@ -22,6 +24,7 @@ function getFromURL(textInput) {
     .then((data) => data);
 }
 
+//function that get the shortr url
 function getLocalURL(textInput) {
   return fetch(`${window.location.origin}/api/shorterurl/`, {
     method: "POST",
@@ -47,11 +50,26 @@ submit.addEventListener("click", async () => {
     );
     const redirectCount = createElement(
       "span",
-      "span-shoretr",
+      "span-redirect",
       "child-view",
       `click Times: ${urlObj.redirectCount}`
     );
-    shortenerUrlDiv.append(shoreterURL, redirectCount);
+    const copyButton = createElement("button", "copy-btn", "btn", "copy URL");
+
+    copyButton.addEventListener("click", async () => {
+      const copyText = (await getLocalURL(input.value)) + urlObj.shortURLid;
+      console.log(copyText);
+      const TempText = document.createElement("input");
+      TempText.value = copyText;
+      document.body.appendChild(TempText);
+      TempText.select();
+      document.execCommand("copy");
+      document.body.removeChild(TempText);
+
+      alert("Copied the text: " + copyText);
+    });
+
+    shortenerUrlDiv.append(shoreterURL, redirectCount, copyButton);
   } else {
     setTimeout(() => {
       shortenerUrlDiv.innerHTML = resObj.message;

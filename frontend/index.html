@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>URL Shortenet</title>
+    <title>URL Shortener</title>
     <link rel="stylesheet" href="./public/style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -13,25 +13,27 @@
     />
   </head>
   <body>
-    <section class="header">
-      <h1 class="main-title">URL Shortener</h1>
-    </section>
+    <div class="app">
+      <section class="header">
+        <h1 class="main-title">URL Shortener</h1>
+      </section>
 
-    <section class="input-section">
-      <label class="input-section-item" id="input-label" for="url_input">
-        Enter full URL:
-      </label>
-      <input
-        class="input-section-item"
-        id="url-input"
-        type="text"
-        name="url"
-        placeholder="https://moz.com/learn/seo/url"
-      />
-      <button class="input-section-item" id="submit">Click For Short</button>
-    </section>
+      <section class="input-section">
+        <label class="input-section-item" id="input-label" for="url_input">
+          Enter full URL:
+        </label>
+        <input
+          class="input-section-item"
+          id="url-input"
+          type="text"
+          name="url"
+          placeholder="https://moz.com/learn/seo/url"
+        />
+        <button class="input-section-item" id="submit">Click For Short</button>
+      </section>
 
-    <section class="view-section-success" id="shortener-url"></section>
+      <section class="view-section-success" id="shortener-url"></section>
+    </div>
     <script src="./main.js"></script>
   </body>
 </html>

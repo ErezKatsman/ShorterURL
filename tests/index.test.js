@@ -4,8 +4,7 @@ const fs = require("fs");
 const { response } = require("../app.js");
 const validTestJson = { url: "https://www.test123.com/" };
 const ValidUrlJSON = {
-  url:
-    "https://www.google.com/search?q=dfsdfdsfdsfddHGFHHFGHFgfjhghjkhgjk&oq=dfsdfdsfdsfddsfdsfdsddsdfsdfdsfdsgfjhghjkhgjk&aqs=chrome..69i57.3965j0j15&sourceid=chrome&ie=UTF-8",
+  url: "https://www.google.com/search?q=dfsdfdsfdsfddHGFHHFGHFgfjhghjkhgjk&oq=dfsdfdsfdsfddsfdsfdsddsdfsdfdsfdsgfjhghjkhgjk&aqs=chrome..69i57.3965j0j15&sourceid=chrome&ie=UTF-8",
 };
 const InValidUrlJSON = { url: "httls://google.com" };
 
@@ -56,11 +55,3 @@ describe("POST route", () => {
     await fs.writeFileSync("./DATABASE.JSON", JSON.stringify(urlDataBefore));
   });
 });
-
-//unfinished
-// describe("GET route", () => {
-//   test("if a correct shorter url redirect to the right url", async () => {
-//     const response = await request(app).get(`/api/shorterurl/1615042437523`);
-//     expect(response.status).toEqual(302);
-//   });
-// });

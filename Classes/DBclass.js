@@ -6,6 +6,7 @@ class DataBase {
     this.dataURL = [];
   }
 
+  //checks if original url exists in DB
   isExist(originalURL) {
     return (
       this.dataURL.findIndex(
@@ -30,6 +31,7 @@ class DataBase {
     }
   }
 
+  // loading data
   loadData() {
     return new Promise((resolve, reject) =>
       fs
@@ -45,6 +47,7 @@ class DataBase {
     );
   }
 
+  //saving data
   saveData() {
     const urls = this.dataURL;
     fs.writeFile("./DATABASE.json", JSON.stringify(urls)).catch((err) => {
@@ -52,6 +55,7 @@ class DataBase {
     });
   }
 
+  //checks if the url is valid
   validURL(str) {
     const pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
@@ -66,7 +70,4 @@ class DataBase {
   }
 }
 
-// function addTodiv(shorterUrl, numOfRedirect) {
-//   input;
-// }
 module.exports = DataBase;

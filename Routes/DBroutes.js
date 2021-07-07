@@ -6,6 +6,7 @@ const { json } = require("body-parser");
 const DB = new DataBase();
 router.use(bodyParser.json());
 
+//redirecting to the original endpoint with the shorer url
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   DB.loadData()
@@ -32,6 +33,7 @@ router.get("/:id", (req, res) => {
     );
 });
 
+// save in the database new url
 router.post("/", (req, res) => {
   const { url } = req.body;
   if (DB.validURL(url)) {
